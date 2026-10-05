@@ -1,211 +1,346 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <title>AI Content Factory</title>
+<title>AI Content Factory</title>
 
-  <style>
-    * {
-      box-sizing: border-box;
-    }
+<style>
 
-    body {
-      margin: 0;
-      font-family: Arial, sans-serif;
-      background: #0f1117;
-      color: white;
-    }
+*{
+box-sizing:border-box;
+}
 
-    .container {
-      max-width: 600px;
-      margin: auto;
-      padding: 25px 18px;
-    }
+body{
+margin:0;
+font-family:Arial,sans-serif;
+background:#0f1117;
+color:white;
+}
 
-    .logo {
-      font-size: 28px;
-      font-weight: bold;
-      margin-bottom: 8px;
-    }
+.container{
+max-width:650px;
+margin:auto;
+padding:25px 18px;
+}
 
-    .subtitle {
-      color: #9ca3af;
-      margin-bottom: 25px;
-    }
+.logo{
+font-size:28px;
+font-weight:bold;
+margin-bottom:6px;
+}
 
-    .card {
-      background: #181b23;
-      padding: 20px;
-      border-radius: 16px;
-      margin-bottom: 18px;
-    }
+.subtitle{
+color:#9ca3af;
+margin-bottom:25px;
+line-height:1.5;
+}
 
-    label {
-      display: block;
-      margin-bottom: 8px;
-      font-weight: bold;
-    }
+.card{
+background:#181b23;
+padding:20px;
+border-radius:16px;
+margin-bottom:18px;
+}
 
-    input,
-    select {
-      width: 100%;
-      padding: 14px;
-      border-radius: 10px;
-      border: 1px solid #303541;
-      background: #10131a;
-      color: white;
-      margin-bottom: 15px;
-      font-size: 15px;
-    }
+label{
+display:block;
+font-weight:bold;
+margin-bottom:8px;
+}
 
-    button {
-      width: 100%;
-      padding: 15px;
-      border: none;
-      border-radius: 10px;
-      background: #ff9800;
-      color: #111;
-      font-size: 16px;
-      font-weight: bold;
-      cursor: pointer;
-    }
+input,
+select{
+width:100%;
+padding:14px;
+border-radius:10px;
+border:1px solid #303541;
+background:#10131a;
+color:white;
+margin-bottom:16px;
+font-size:15px;
+}
 
-    button:active {
-      transform: scale(0.98);
-    }
+button{
+width:100%;
+padding:15px;
+border:none;
+border-radius:10px;
+background:#ff9800;
+color:#111;
+font-size:16px;
+font-weight:bold;
+cursor:pointer;
+}
 
-    .result {
-      display: none;
-    }
+button:active{
+transform:scale(.98);
+}
 
-    .idea {
-      background: #10131a;
-      padding: 14px;
-      border-radius: 10px;
-      margin-top: 10px;
-    }
+.result{
+display:none;
+}
 
-    .badge {
-      display: inline-block;
-      background: #272c38;
-      padding: 6px 10px;
-      border-radius: 20px;
-      font-size: 12px;
-      color: #bbb;
-    }
-  </style>
+.badge{
+display:inline-block;
+background:#272c38;
+padding:6px 10px;
+border-radius:20px;
+font-size:12px;
+color:#bbb;
+}
+
+.analysis{
+background:#10131a;
+padding:14px;
+border-radius:10px;
+margin-top:12px;
+line-height:1.5;
+}
+
+.idea{
+background:#10131a;
+padding:15px;
+border-radius:10px;
+margin-top:10px;
+line-height:1.5;
+}
+
+.small{
+font-size:13px;
+color:#9ca3af;
+}
+
+</style>
 </head>
+
 
 <body>
 
-  <div class="container">
+<div class="container">
 
-    <div class="logo">⚡ AI Content Factory</div>
+<div class="logo">
+⚡ AI Content Factory
+</div>
 
-    <div class="subtitle">
-      Create original content from viral ideas.
-    </div>
+<div class="subtitle">
+Turn viral references into original content ideas.
+</div>
 
-    <div class="card">
 
-      <label>🔗 Viral Video URL</label>
+<div class="card">
 
-      <input
-        id="videoUrl"
-        type="url"
-        placeholder="Paste YouTube URL..."
-      >
+<label>🔗 Viral Video URL</label>
 
-      <label>🌎 Target Country</label>
+<input
+id="videoUrl"
+type="url"
+placeholder="Paste YouTube video link..."
+>
 
-      <select id="country">
-        <option>🇺🇸 United States</option>
-        <option>🇬🇧 United Kingdom</option>
-        <option>🇨🇦 Canada</option>
-        <option>🇦🇺 Australia</option>
-      </select>
 
-      <label>🧠 Niche</label>
+<label>🌎 Target Audience</label>
 
-      <select id="niche">
-        <option>Psychology</option>
-        <option>Human Behavior</option>
-        <option>Deep Thoughts</option>
-        <option>Money Psychology</option>
-        <option>Motivation</option>
-      </select>
+<select id="country">
 
-      <button onclick="analyzeVideo()">
-        ⚡ ANALYZE VIDEO
-      </button>
+<option>🇺🇸 United States</option>
 
-    </div>
+<option>🇬🇧 United Kingdom</option>
 
-    <div id="result" class="card result">
+<option>🇨🇦 Canada</option>
 
-      <span class="badge">AI ANALYSIS</span>
+<option>🇦🇺 Australia</option>
 
-      <h2>📊 Video Analysis</h2>
+</select>
 
-      <p>
-        <b>Topic:</b>
-        <span id="topic"></span>
-      </p>
 
-      <p>
-        <b>Target:</b>
-        <span id="target"></span>
-      </p>
+<label>🗣️ Content Language</label>
 
-      <hr>
+<select id="language">
 
-      <h2>💡 5 Original Ideas</h2>
+<option>English</option>
 
-      <div id="ideas"></div>
+<option>Indonesian</option>
 
-    </div>
+</select>
 
-  </div>
+
+<label>💡 Number of Ideas</label>
+
+<select id="ideaCount">
+
+<option>5</option>
+
+<option>10</option>
+
+</select>
+
+
+<button onclick="analyzeVideo()">
+
+⚡ ANALYZE VIRAL VIDEO
+
+</button>
+
+</div>
+
+
+
+<div id="result" class="card result">
+
+<span class="badge">
+AI VIRAL ANALYSIS
+</span>
+
+
+<h2>📊 Analysis</h2>
+
+
+<div class="analysis">
+
+<p>
+<b>Detected Niche:</b>
+<span id="niche">Detecting...</span>
+</p>
+
+<p>
+<b>Main Topic:</b>
+<span id="topic">Analyzing...</span>
+</p>
+
+<p>
+<b>Hook Pattern:</b>
+<span id="hook">Analyzing...</span>
+</p>
+
+<p>
+<b>Target Audience:</b>
+<span id="audience">Analyzing...</span>
+</p>
+
+<p>
+<b>Why It Works:</b>
+<span id="why">Analyzing...</span>
+</p>
+
+</div>
+
+
+
+<h2>💡 Original Concepts</h2>
+
+<p class="small">
+These are new concepts inspired by the topic and structure,
+not copies of the original video.
+</p>
+
+
+<div id="ideas"></div>
+
+</div>
+
+</div>
+
+
 
 <script>
 
-function analyzeVideo() {
+function analyzeVideo(){
 
-  const url = document.getElementById("videoUrl").value;
-  const country = document.getElementById("country").value;
-  const niche = document.getElementById("niche").value;
+const url =
+document.getElementById("videoUrl").value;
 
-  if (!url) {
-    alert("Masukkan link video terlebih dahulu.");
-    return;
-  }
+const country =
+document.getElementById("country").value;
 
-  document.getElementById("result").style.display = "block";
+const language =
+document.getElementById("language").value;
 
-  document.getElementById("topic").innerText = niche;
+const ideaCount =
+parseInt(document.getElementById("ideaCount").value);
 
-  document.getElementById("target").innerText = country;
 
-  const ideas = [
-    "Why Smart People Sometimes Make Bad Decisions",
-    "5 Psychological Habits That Reveal Your Real Personality",
-    "Why Quiet People Often Notice More Than Others",
-    "The Hidden Psychology Behind Everyday Decisions",
-    "Why Your Brain Remembers Emotional Moments"
-  ];
+if(!url){
 
-  document.getElementById("ideas").innerHTML =
-    ideas.map((idea, index) => `
-      <div class="idea">
-        <b>${index + 1}.</b> ${idea}
-      </div>
-    `).join("");
+alert("Please paste a video URL first.");
+
+return;
+
+}
+
+
+document.getElementById("result")
+.style.display="block";
+
+
+document.getElementById("niche")
+.innerText="Auto Detect";
+
+
+document.getElementById("topic")
+.innerText="Waiting for AI analysis";
+
+
+document.getElementById("hook")
+.innerText="Waiting for AI analysis";
+
+
+document.getElementById("audience")
+.innerText=country;
+
+
+document.getElementById("why")
+.innerText="Waiting for AI analysis";
+
+
+const sampleIdeas=[
+
+"Why Your Brain Makes Decisions Before You Realize It",
+
+"The Hidden Psychology Behind Everyday Human Behavior",
+
+"5 Things People Do Without Knowing What They Reveal",
+
+"Why Some People Notice Things Others Completely Miss",
+
+"The Strange Reason Humans Repeat Their Own Mistakes",
+
+"Why Intelligent People Sometimes Overthink Simple Decisions",
+
+"How Your Daily Habits Reveal Your Personality",
+
+"Why People Remember Emotional Moments More Clearly",
+
+"The Psychology Behind Why We Trust Certain People",
+
+"Why Your Brain Loves Familiar Patterns"
+
+];
+
+
+const selectedIdeas =
+sampleIdeas.slice(0,ideaCount);
+
+
+document.getElementById("ideas").innerHTML =
+
+selectedIdeas.map((idea,index)=>`
+
+<div class="idea">
+
+<b>${index+1}.</b>
+${idea}
+
+</div>
+
+`).join("");
 
 }
 
 </script>
 
+
 </body>
-  </html>
+</html>
