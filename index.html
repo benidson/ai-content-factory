@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>AI Content Factory</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #0f1117;
+      color: white;
+    }
+
+    .container {
+      max-width: 600px;
+      margin: auto;
+      padding: 25px 18px;
+    }
+
+    .logo {
+      font-size: 28px;
+      font-weight: bold;
+      margin-bottom: 8px;
+    }
+
+    .subtitle {
+      color: #9ca3af;
+      margin-bottom: 25px;
+    }
+
+    .card {
+      background: #181b23;
+      padding: 20px;
+      border-radius: 16px;
+      margin-bottom: 18px;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 8px;
+      font-weight: bold;
+    }
+
+    input,
+    select {
+      width: 100%;
+      padding: 14px;
+      border-radius: 10px;
+      border: 1px solid #303541;
+      background: #10131a;
+      color: white;
+      margin-bottom: 15px;
+      font-size: 15px;
+    }
+
+    button {
+      width: 100%;
+      padding: 15px;
+      border: none;
+      border-radius: 10px;
+      background: #ff9800;
+      color: #111;
+      font-size: 16px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    button:active {
+      transform: scale(0.98);
+    }
+
+    .result {
+      display: none;
+    }
+
+    .idea {
+      background: #10131a;
+      padding: 14px;
+      border-radius: 10px;
+      margin-top: 10px;
+    }
+
+    .badge {
+      display: inline-block;
+      background: #272c38;
+      padding: 6px 10px;
+      border-radius: 20px;
+      font-size: 12px;
+      color: #bbb;
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="container">
+
+    <div class="logo">⚡ AI Content Factory</div>
+
+    <div class="subtitle">
+      Create original content from viral ideas.
+    </div>
+
+    <div class="card">
+
+      <label>🔗 Viral Video URL</label>
+
+      <input
+        id="videoUrl"
+        type="url"
+        placeholder="Paste YouTube URL..."
+      >
+
+      <label>🌎 Target Country</label>
+
+      <select id="country">
+        <option>🇺🇸 United States</option>
+        <option>🇬🇧 United Kingdom</option>
+        <option>🇨🇦 Canada</option>
+        <option>🇦🇺 Australia</option>
+      </select>
+
+      <label>🧠 Niche</label>
+
+      <select id="niche">
+        <option>Psychology</option>
+        <option>Human Behavior</option>
+        <option>Deep Thoughts</option>
+        <option>Money Psychology</option>
+        <option>Motivation</option>
+      </select>
+
+      <button onclick="analyzeVideo()">
+        ⚡ ANALYZE VIDEO
+      </button>
+
+    </div>
+
+    <div id="result" class="card result">
+
+      <span class="badge">AI ANALYSIS</span>
+
+      <h2>📊 Video Analysis</h2>
+
+      <p>
+        <b>Topic:</b>
+        <span id="topic"></span>
+      </p>
+
+      <p>
+        <b>Target:</b>
+        <span id="target"></span>
+      </p>
+
+      <hr>
+
+      <h2>💡 5 Original Ideas</h2>
+
+      <div id="ideas"></div>
+
+    </div>
+
+  </div>
+
+<script>
+
+function analyzeVideo() {
+
+  const url = document.getElementById("videoUrl").value;
+  const country = document.getElementById("country").value;
+  const niche = document.getElementById("niche").value;
+
+  if (!url) {
+    alert("Masukkan link video terlebih dahulu.");
+    return;
+  }
+
+  document.getElementById("result").style.display = "block";
+
+  document.getElementById("topic").innerText = niche;
+
+  document.getElementById("target").innerText = country;
+
+  const ideas = [
+    "Why Smart People Sometimes Make Bad Decisions",
+    "5 Psychological Habits That Reveal Your Real Personality",
+    "Why Quiet People Often Notice More Than Others",
+    "The Hidden Psychology Behind Everyday Decisions",
+    "Why Your Brain Remembers Emotional Moments"
+  ];
+
+  document.getElementById("ideas").innerHTML =
+    ideas.map((idea, index) => `
+      <div class="idea">
+        <b>${index + 1}.</b> ${idea}
+      </div>
+    `).join("");
+
+}
+
+</script>
+
+</body>
+  </html>
